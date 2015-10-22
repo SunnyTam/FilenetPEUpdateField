@@ -97,11 +97,13 @@ public class Main {
 			}
 			String oldFieldValue = workObj.getDataField(FIELD_NAME).toString();
 			String newFieldValue = getMapValue(oldFieldValue);
-			System.out.println("old field: " + oldFieldValue);
-			System.out.println("updating field: " + newFieldValue);
-			workObj.doLock(true);
-			workObj.setFieldValue(FIELD_NAME, newFieldValue, false);
-			workObj.doSave(true);
+			if(!oldFieldValue.equals(newFieldValue)){
+				System.out.println("old field: " + oldFieldValue);
+				System.out.println("updating field: " + newFieldValue);
+				workObj.doLock(true);
+				workObj.setFieldValue(FIELD_NAME, newFieldValue, false);
+				workObj.doSave(true);
+			}
 			System.out.println("success! get: " + workObj.getDataField(FIELD_NAME).toString());
 		}
 		System.out.println();
